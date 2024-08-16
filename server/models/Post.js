@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const postSchema = new Schema({
-  postText: {
+  text: {
     type: String,
     required: 'You need to leave a post!',
     minlength: 1,
@@ -16,7 +16,7 @@ const postSchema = new Schema({
       ref: 'Game',
     },
   ],
-  postAuthor: {
+  author: {
     type: String,
     required: true,
     trim: true,
@@ -28,21 +28,8 @@ const postSchema = new Schema({
   },
   comments: [
     {
-      commentText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      commentAuthor: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
     },
   ],
 });

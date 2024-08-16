@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const gameSchema = new Schema ({
-    gameTitle: {
+    title: {
         type: String,
         required: true,
         minlength: 2,
@@ -9,7 +9,7 @@ const gameSchema = new Schema ({
         trim: true,
     },
 
-    gameCompany: {
+    company: {
         type: String,
         required: true,
         minlength: 2,
@@ -17,7 +17,7 @@ const gameSchema = new Schema ({
         trim: true,
     },
 
-    gameConsole: [{
+    console: [{
         type: String,
         required: true,
         minlength: 2,
