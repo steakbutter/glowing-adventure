@@ -65,13 +65,13 @@ const resolvers = {
       throw AuthenticationError;
       ('You need to be logged in!');
     },
-    addComment: async (parent, { commentId, text }, context) => {
+    addComment: async (parent, { postId, commentText }, context) => {
       if (context.user) {
-        return Comment.findOneAndUpdate(
-          { _id: commentId },
+        return Post.findOneAndUpdate(
+          { _id: postId },
           {
             $addToSet: {
-              comments: { text, author: context.user.username },
+              comments: { commentText, commentAuthor: context.user.username },
             },
           },
           {
@@ -98,15 +98,15 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeComment: async (parent, { commentId }, context) => {
+    removeComment: async (parent, { postId, commentId }, context) => {
       if (context.user) {
-        return Comment.findOneAndUpdate(
-          { _id: commentId },
+        return Post.findOneAndUpdate(
+          { _id: postId },
           {
             $pull: {
               comments: {
                 _id: commentId,
-                author: context.user.username,
+                commentAuthor: context.user.username,
               },
             },
           },

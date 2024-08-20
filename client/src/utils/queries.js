@@ -6,9 +6,9 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      thoughts {
+      posts {
         _id
-        thoughtText
+        text
         createdAt
       }
     }
@@ -35,8 +35,8 @@ export const QUERY_SINGLE_POST = gql`
       createdAt
       comments {
         _id
-        text
-        author
+        commentText
+        commentAuthor
         createdAt
       }
     }

@@ -18,8 +18,8 @@ const typeDefs = `
 
   type Comment {
     _id: ID
-    text: String
-    author: String
+    commentText: String
+    commentAuthor: String
     createdAt: String
   }
 
@@ -40,7 +40,6 @@ const typeDefs = `
     user(username: String!): User
     posts(username: String): [Post]
     post(postId: ID!): Post
-    comment(commentId: ID!): Comment
     me: User
   }
 
@@ -48,9 +47,9 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addPost(text: String!): Post
-    addComment(commentId: ID!, text: String!): Comment
+    addComment(postId: ID!, commentText: String!): Post
     removePost(postId: ID!): Post
-    removeComment(commentId: ID!): Comment
+    removeComment(postId: ID!, commentId: ID!): Post
   }
 `;
 
