@@ -1,24 +1,24 @@
-const { User, Thought } = require('../models');
+const { User, Post, Comment, Game  } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('posts');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('posts');
     },
-    thoughts: async (parent, { username }) => {
+    posts: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+      return Post.find(params).sort({ createdAt: -1 });
     },
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    post: async (parent, { postId }) => {
+      return Post.findOne({ _id: postId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('posts');
       }
       throw AuthenticationError;
     },
@@ -47,30 +47,30 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText }, context) => {
+    addPost: async (parent, { text }, context) => {
       if (context.user) {
-        const thought = await Thought.create({
-          thoughtText,
-          thoughtAuthor: context.user.username,
+        const post = await Post.create({
+          text,
+          author: context.user.username,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
+          { $addToSet: { posts: post._id } }
         );
 
-        return thought;
+        return post;
       }
       throw AuthenticationError;
       ('You need to be logged in!');
     },
-    addComment: async (parent, { thoughtId, commentText }, context) => {
+    addComment: async (parent, { commentId, text }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Comment.findOneAndUpdate(
+          { _id: commentId },
           {
             $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
+              comments: { text, author: context.user.username },
             },
           },
           {
@@ -81,31 +81,31 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeThought: async (parent, { thoughtId }, context) => {
+    removePost: async (parent, { postId }, context) => {
       if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
+        const post = await Post.findOneAndDelete({
+          _id: postId,
+          author: context.user.username,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+          { $pull: { posts: post._id } }
         );
 
-        return thought;
+        return post;
       }
       throw AuthenticationError;
     },
-    removeComment: async (parent, { thoughtId, commentId }, context) => {
+    removeComment: async (parent, { commentId }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Comment.findOneAndUpdate(
+          { _id: commentId },
           {
             $pull: {
               comments: {
                 _id: commentId,
-                commentAuthor: context.user.username,
+                author: context.user.username,
               },
             },
           },
