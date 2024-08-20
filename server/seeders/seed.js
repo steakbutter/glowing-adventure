@@ -13,9 +13,9 @@ db.once('open', async () => {
     await User.create(userSeeds);
 
     for (let i = 0; i < postSeeds.length; i++) {
-      const { _id, postAuthor } = await Post.create(postSeeds[i]);
+      const { _id, author } = await Post.create(postSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { username: postAuthor },
+        { username: author },
         {
           $addToSet: {
             posts: _id,
