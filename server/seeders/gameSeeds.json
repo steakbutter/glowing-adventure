@@ -1,0 +1,19 @@
+[
+    {
+        "title": "Elden Ring",
+        "company": "From Software",
+        "console": ["PS5", "XBOX One", "PC"]
+     },
+
+     {
+        "title": "Detroit Become Human",
+        "company": "Quantic Dream",
+        "console": ["PS4", "PS5"]
+     },
+
+     {
+        "title": "Horizon",
+        "company": "Guerrilla",
+        "console": ["PS4", "PS5"]
+     }
+]
