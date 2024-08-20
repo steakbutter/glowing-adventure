@@ -1,5 +1,5 @@
 
-const { User, Post, Comment, Game  } = require('../models');
+const { User, Post, Game  } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -16,6 +16,9 @@ const resolvers = {
     },
     post: async (parent, { postId }) => {
       return Post.findOne({ _id: postId });
+    },
+    games: async (parent, { username }) => {
+      return Game.find()
     },
     me: async (parent, args, context) => {
       if (context.user) {
