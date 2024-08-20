@@ -1,3 +1,4 @@
+
 const { User, Post, Comment, Game  } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
