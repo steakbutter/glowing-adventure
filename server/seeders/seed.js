@@ -13,10 +13,28 @@ db.once('open', async () => {
 
     await User.create(userSeeds);
 
-    await Game.create(gameSeeds);
+    const games = await Game.create(gameSeeds);
+
+
+    function getRandomGames(gameArray, numGames) {
+      const shuffled = gameArray.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, numGames);
+    }
     
     for (let i = 0; i < postSeeds.length; i++) {
-      const { _id, author } = await Post.create(postSeeds[i]);
+
+      const postSeed = postSeeds[i];
+
+      // Get a random number of games (between 1 and the total number of games)
+      const randomGames = getRandomGames(games, Math.floor(Math.random() * games.length) + 1);
+      
+      console.log(randomGames);
+
+      // Populate the gameList with the selected random games' ObjectId references
+      postSeed.gameList = randomGames.map(game => game._id);
+
+
+      const { _id, author } = await Post.create(postSeeds);
       const user = await User.findOneAndUpdate(
         { username: author },
         {
