@@ -10,7 +10,7 @@ const postSchema = new Schema({
     trim: true,
   },
 
-  gameList:[ 
+  games:[ 
     {
       type: Schema.Types.ObjectId,
       ref: 'Game',
