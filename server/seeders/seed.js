@@ -13,6 +13,8 @@ db.once('open', async () => {
 
     await User.create(userSeeds);
 
+    await Game.create(gameSeeds);
+    
     for (let i = 0; i < postSeeds.length; i++) {
       const { _id, author } = await Post.create(postSeeds[i]);
       const user = await User.findOneAndUpdate(
