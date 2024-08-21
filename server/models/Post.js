@@ -9,7 +9,13 @@ const postSchema = new Schema({
     maxlength: 280,
     trim: true,
   },
-
+  title: {
+    type: String,
+    required: 'You need to add text!',
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
   games:[ 
     {
       type: Schema.Types.ObjectId,

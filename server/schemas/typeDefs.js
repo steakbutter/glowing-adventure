@@ -10,6 +10,7 @@ const typeDefs = `
   type Post {
     _id: ID
     text: String
+    title: String
     author: String
     games: [Game]!
     createdAt: String

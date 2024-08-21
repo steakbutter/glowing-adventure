@@ -12,10 +12,10 @@ const resolvers = {
     },
     posts: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Post.find(params).sort({ createdAt: -1 });
+      return Post.find(params).populate('games');
     },
     post: async (parent, { postId }) => {
-      return Post.findOne({ _id: postId }).populate('game');
+      return Post.findOne({ _id: postId }).populate('games');
     },
     games: async () => {
       return Game.find()
@@ -57,6 +57,7 @@ const resolvers = {
     addPost: async (parent, { text }, context) => {
       if (context.user) {
         const post = await Post.create({
+          title,
           text,
           author: context.user.username,
         });
