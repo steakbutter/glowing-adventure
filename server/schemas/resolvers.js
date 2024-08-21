@@ -17,8 +17,11 @@ const resolvers = {
     post: async (parent, { postId }) => {
       return Post.findOne({ _id: postId });
     },
-    games: async (parent, { username }) => {
+    games: async () => {
       return Game.find()
+    },
+    game: async (parent, { title }) => {
+      return Game.findOne({ title })
     },
     me: async (parent, args, context) => {
       if (context.user) {

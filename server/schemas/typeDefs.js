@@ -11,7 +11,7 @@ const typeDefs = `
     _id: ID
     text: String
     author: String
-    gameList: [Game]!
+    games: [Game]!
     createdAt: String
     comments: [Comment]!
   }
@@ -40,6 +40,8 @@ const typeDefs = `
     user(username: String!): User
     posts(username: String): [Post]
     post(postId: ID!): Post
+    games: [Game]
+    game(title: String!): Game
     me: User
   }
 
