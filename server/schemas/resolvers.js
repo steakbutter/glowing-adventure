@@ -15,7 +15,7 @@ const resolvers = {
       return Post.find(params).sort({ createdAt: -1 });
     },
     post: async (parent, { postId }) => {
-      return Post.findOne({ _id: postId });
+      return Post.findOne({ _id: postId }).populate('game');
     },
     games: async () => {
       return Game.find()
