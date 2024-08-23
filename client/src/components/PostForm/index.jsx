@@ -7,7 +7,7 @@ import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const PostForm = () => {
+const PostForm = (games) => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
 
