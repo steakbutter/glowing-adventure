@@ -13,8 +13,6 @@ const PostForm = ({games}) => {
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  console.log(games)
-
   const [addPost, { error }] = useMutation
   (ADD_POST, {
     refetchQueries: [
@@ -27,8 +25,11 @@ const PostForm = ({games}) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(text)
-    console.log(title)
+
+
+    const formData = new FormData(event.target);
+    const data = formData.entries();
+    console.log(data);
 
     try {
       const { data } = await addPost({
@@ -107,7 +108,7 @@ const PostForm = ({games}) => {
               <div>
               {games && games.map((game) => (
                 <div key={game._id+"_0"}>
-                  <input type="checkbox" id={game.title} name={game.title} key={game._id+"_1"} />
+                  <input type="checkbox" id={game.title} name={game.title} key={game._id+"_1"} value = {game._id} />
                   <label htmlFor = {game.title} key={game._id+"_2"}>{game.title}</label>
                 </div>
               ))}
