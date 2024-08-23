@@ -441,6 +441,7 @@ a:hover {
   width: 100%;
 }
 
+
 .w-75 {
   width: 75%;
 }
@@ -451,6 +452,13 @@ a:hover {
 
 .w-25 {
   width: 25%;
+}
+
+.h-1 {
+  height: 6vh;
+}
+.h-2 {
+  height: 12vh;
 }
 
 .min-100-vh {

@@ -30,7 +30,7 @@ const PostList = ({
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this psot on {post.createdAt}
+                    You had this post on {post.createdAt}
                   </span>
                 </>
               )}

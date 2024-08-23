@@ -26,6 +26,17 @@ export const QUERY_POSTS = gql`
   }
 `;
 
+export const QUERY_GAMES = gql`
+  query getGames {
+    games {
+      _id
+      text
+      author
+      createdAt
+    }
+  }
+`;
+
 export const QUERY_SINGLE_POST = gql`
   query getSinglePost($postId: ID!) {
     post(postId: $postId) {

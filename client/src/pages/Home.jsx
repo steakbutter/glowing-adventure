@@ -3,11 +3,13 @@ import { useQuery } from '@apollo/client';
 import PostList from '../components/PostList';
 import PostForm from '../components/PostForm';
 
-import { QUERY_POSTS } from '../utils/queries';
+import { QUERY_POSTS, Q } from '../utils/queries';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_POSTS);
+  const { loadingGames, gamesData } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
+  const games = data?.games || [];
 
   return (
     <main>
