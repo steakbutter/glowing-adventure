@@ -9,6 +9,7 @@ import Auth from '../../utils/auth';
 
 const PostForm = () => {
   const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -24,22 +25,34 @@ const PostForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(text)
+    console.log(title)
 
     try {
       const { data } = await addPost({
         variables: {
           text,
+          title,
           author: Auth.getProfile().data.username,
         },
       });
 
       setText('');
+      setTitle('');
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleChange = (event) => {
+  const handleTitleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === 'title' && value.length <= 280) {
+      setTitle(value);
+      // setCharacterCount(value.length);
+    }
+  };
+  const handleTextChange = (event) => {
     const { name, value } = event.target;
 
     if (name === 'text' && value.length <= 280) {
@@ -54,26 +67,37 @@ const PostForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
-          >
-            Character Count: {characterCount}/280
-          </p>
+          
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="text"
-                placeholder="Here's a new post..."
-                value={text}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
+                name="title"
+                placeholder="Enter the title of your post..."
+                value={title}
+                className="form-input h-1"
+                style={{ lineHeight: '1', resize: 'vertical' }}
+                onChange={handleTitleChange}
               ></textarea>
+            </div>
+            <div className="col-12 col-lg-9">
+              <textarea
+                name="text"
+                placeholder="Type a description for your post..."
+                value={text}
+                className="form-input h-2"
+                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                onChange={handleTextChange}
+              ></textarea>
+              <p
+            className={`m-0 ${
+              characterCount === 280 || error ? 'text-danger' : ''
+            }`}
+          >
+            Character Count: {characterCount}/280
+          </p>
             </div>
 
             <div className="col-12 col-lg-3">
