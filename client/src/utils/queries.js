@@ -30,9 +30,9 @@ export const QUERY_GAMES = gql`
   query getGames {
     games {
       _id
-      text
-      author
-      createdAt
+      title
+      company
+      console
     }
   }
 `;
