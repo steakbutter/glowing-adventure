@@ -17,7 +17,7 @@ db.once('open', async () => {
 
 
     function getRandomGames(gameArray, numGames) {
-      const shuffled = gameArray.sort(() => 0.5 - Math.random());
+      const shuffled = gameArray.sort(() => Math.random() -0.5 );
       return shuffled.slice(0, numGames);
     }
     
@@ -27,14 +27,12 @@ db.once('open', async () => {
 
       // Get a random number of games (between 1 and the total number of games)
       const randomGames = getRandomGames(games, 2);
-      
-      console.log(randomGames);
 
       // Populate the gameList with the selected random games' ObjectId references
       postSeed.games = randomGames.map(game => game._id);
 
 
-      const { _id, author } = await Post.create(postSeeds);
+      const { _id, author } = await Post.create(postSeed);
       const user = await User.findOneAndUpdate(
         { username: author },
         {

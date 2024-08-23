@@ -11,24 +11,35 @@ import Auth from '../utils/auth';
 const Profile = () => {
   const { username: userParam } = useParams();
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
-  });
+  // try to not repeat this
+  const queryMultiple = (userParam) => {
+    
+    const games = useQuery(QUERY_GAMES);
+    const user = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+      variables: { username: userParam },
+    });
+    return [games, user];
+  }
 
-  const { loadingGames, gamesData } = useQuery(QUERY_GAMES);
+  const multipleQueries = queryMultiple(userParam)
+// ---------------------------------------------
 
-  console.log(1  + gamesData)
+  const { loading : userLoading, data : userData } = multipleQueries[1];
+
+  const { loading : gameLoading, data : gameData } =  multipleQueries[0];
 
 
-  const user = data?.me || data?.user || {};
+  const user = userData?.me || userData?.user || {};
+  const games = gameData?.games || [];
   // navigate to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Navigate to="/me" />;
   }
 
-  if (loading) {
+  if (userLoading || gameLoading) {
     return <div>Loading...</div>;
   }
+
 
   if (!user?.username) {
     return (
@@ -38,6 +49,8 @@ const Profile = () => {
       </h4>
     );
   }
+
+  console.log(user)
 
   return (
     <div>
@@ -59,7 +72,7 @@ const Profile = () => {
             className="col-12 col-md-10 mb-3 p-3"
             style={{ border: '1px dotted #1a1a1a' }}
           >
-            <PostForm games={gamesData}/>
+            <PostForm games={games}/>
           </div>
         )}
       </div>

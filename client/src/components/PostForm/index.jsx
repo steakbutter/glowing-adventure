@@ -106,9 +106,9 @@ const PostForm = ({games}) => {
               
               <div>
               {games && games.map((game) => (
-                <div key={game._id+2}>
-                  <input type="checkbox" id={game.title} name={game.title} key={game._id} />
-                  <label htmlFor = {game.title} key={game._id+1}>{game.title}</label>
+                <div key={game._id+"_0"}>
+                  <input type="checkbox" id={game.title} name={game.title} key={game._id+"_1"} />
+                  <label htmlFor = {game.title} key={game._id+"_2"}>{game.title}</label>
                 </div>
               ))}
               </div>
