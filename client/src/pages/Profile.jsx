@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import PostForm from '../components/PostForm';
 import PostList from '../components/PostList';
 
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { QUERY_USER, QUERY_ME, QUERY_GAMES } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
@@ -15,7 +15,10 @@ const Profile = () => {
     variables: { username: userParam },
   });
 
-  console.log(data);
+  const { loadingGames, gamesData } = useQuery(QUERY_GAMES);
+
+  console.log(1  + gamesData)
+
 
   const user = data?.me || data?.user || {};
   // navigate to personal profile page if username is yours
@@ -56,7 +59,7 @@ const Profile = () => {
             className="col-12 col-md-10 mb-3 p-3"
             style={{ border: '1px dotted #1a1a1a' }}
           >
-            <PostForm />
+            <PostForm games={gamesData}/>
           </div>
         )}
       </div>

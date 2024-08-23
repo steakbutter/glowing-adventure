@@ -6,10 +6,15 @@ import PostForm from '../components/PostForm';
 import { QUERY_POSTS, QUERY_GAMES } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_POSTS);
-  const { loadingGames, gamesData } = useQuery(QUERY_GAMES);
-  const posts = data?.posts || [];
+
+
+
+
+  // const { loading, data } = useQuery(QUERY_POSTS);
+  const { loading, data } = useQuery(QUERY_GAMES);
+  // const posts = data?.posts || [];
   const games = data?.games || [];
+  console.log(games)
 
   return (
     <main>
@@ -19,18 +24,18 @@ const Home = () => {
           style={{ border: '1px dotted #1a1a1a' }}
         >
           <PostForm 
-          games={games} 
+            games={games} 
           />
         </div>
         <div className="col-12 col-md-8 mb-3">
-          {loading ? (
+          {/* {loading ? (
             <div>Loading...</div>
           ) : (
             <PostList
               posts={posts}
               title="Some Feed for Post(s)..."
             />
-          )}
+          )} */}
         </div>
       </div>
     </main>

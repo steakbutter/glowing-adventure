@@ -7,11 +7,13 @@ import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const PostForm = (games) => {
+const PostForm = ({games}) => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
+
+  console.log(games)
 
   const [addPost, { error }] = useMutation
   (ADD_POST, {
@@ -92,13 +94,27 @@ const PostForm = (games) => {
                 onChange={handleTextChange}
               ></textarea>
               <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
-          >
-            Character Count: {characterCount}/280
-          </p>
+                className={`m-0 ${
+                characterCount === 280 || error ? 'text-danger' : ''}`}
+              >
+              Character Count: {characterCount}/280
+              </p>
             </div>
+
+            <div className="col-12 col-lg-9">
+              <p>Choose your games:</p>
+              
+              <div>
+              {games && games.map((game) => (
+                <div key={game._id+2}>
+                  <input type="checkbox" id={game.title} name={game.title} key={game._id} />
+                  <label htmlFor = {game.title} key={game._id+1}>{game.title}</label>
+                </div>
+              ))}
+              </div>
+              
+            </div>
+              
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
