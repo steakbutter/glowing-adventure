@@ -26,10 +26,16 @@ const PostForm = ({games}) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-
+    const gamesArray = [];
     const formData = new FormData(event.target);
-    const data = formData.entries();
-    console.log(data);
+    const formEntries = formData.entries();
+    for (const entry of formEntries){
+      
+      let { 0 : key, 1 : value} = entry;
+      if (key.includes("checkbox")){
+        gamesArray.push(value);
+      }
+    };
 
     try {
       const { data } = await addPost({
@@ -37,13 +43,28 @@ const PostForm = ({games}) => {
           text,
           title,
           author: Auth.getProfile().data.username,
+          games: gamesArray,
         },
       });
+
+
+     
+
 
       setText('');
       setTitle('');
     } catch (err) {
-      console.error(err);
+      if (err) {
+        if (error.networkError) {
+          console.error("Network error:", error.networkError.result || error.networkError.message);
+        } else if (error.graphQLErrors) {
+          console.error("GraphQL errors:", error.graphQLErrors.map(err => err.message).join(', '));
+        } else {
+          console.error("An unknown error occurred:", error.message);
+        }
+      } else {
+        console.error("An error occurred but the error object is undefined.");
+      }
     }
   };
 
@@ -106,10 +127,10 @@ const PostForm = ({games}) => {
               <p>Choose your games:</p>
               
               <div>
-              {games && games.map((game) => (
+              {games && games.map((game, index) => (
                 <div key={game._id+"_0"}>
-                  <input type="checkbox" id={game.title} name={game.title} key={game._id+"_1"} value = {game._id} />
-                  <label htmlFor = {game.title} key={game._id+"_2"}>{game.title}</label>
+                  <input type="checkbox" id={game._id} name={"checkbox-" + index} key={game._id + "_" + index} value = {game._id} />
+                  <label key={game._id + "_label_2"}>{game.title}</label>
                 </div>
               ))}
               </div>

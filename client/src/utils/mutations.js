@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($text: String!, $title: String!) {
-    addPost(text: $text, title: $title) {
+  mutation addPost($text: String!, $title: String!, $games: [ID]!) {
+    addPost(text: $text, title: $title,, games: $games) {
       _id
       text
       title

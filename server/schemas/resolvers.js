@@ -54,12 +54,13 @@ const resolvers = {
 
       return { token, user };
     },
-    addPost: async (parent, { text }, context) => {
+    addPost: async (parent, { text, title, games }, context) => {
       if (context.user) {
         const post = await Post.create({
           title,
           text,
           author: context.user.username,
+          games,
         });
 
         await User.findOneAndUpdate(
