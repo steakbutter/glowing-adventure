@@ -19,8 +19,13 @@ export const QUERY_POSTS = gql`
   query getPosts {
     posts {
       _id
+      title
       text
       author
+      games{
+        _id
+        title
+      }
       createdAt
     }
   }
