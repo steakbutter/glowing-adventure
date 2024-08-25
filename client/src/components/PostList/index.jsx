@@ -5,6 +5,7 @@ const PostList = ({
   title,
   showTitle = true,
   showUsername = true,
+  showGames = true,
 }) => {
   
   if (!posts.length) {
@@ -40,7 +41,7 @@ const PostList = ({
             <div className="card-body bg-light p-2">
               <p>{post.text}</p>
               <div >
-                {post.games.map((game) => (
+                {showGames && post.games.map((game) => (
                   <div key = {game._id}> 
                     <p>{game.title}</p>
                   </div>

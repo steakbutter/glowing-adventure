@@ -50,7 +50,6 @@ const Profile = () => {
     );
   }
 
-  console.log(user)
 
   return (
     <div>
@@ -65,6 +64,7 @@ const Profile = () => {
             title={`${user.username}'s posts...`}
             showTitle={false}
             showUsername={false}
+            showGames={false}
           />
         </div>
         {!userParam && (
