@@ -12,26 +12,34 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="m-0">Video Games Posts</h1>
+            <h1 className="m-0">Video Game Lists</h1>
           </Link>
           <p className="m-0">Get into the mind of a player.</p>
         </div>
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-m btn-info m-2" to="/me">
-                {Auth.getProfile().data.username}'s profile
-              </Link>
-              <button className="btn btn-m btn-light m-2" onClick={logout}>
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role='button' className="btn btn-info m-1">{Auth.getProfile().data.username}</div>
+              <ul tabIndex={0} className="menu dropdown-content bg-info rounded-box p-2">
+                <li><Link className="text-light" to="/me">Profile</Link></li>
+                <li><button onClick={logout}>Logout</button></li>
+              </ul>
+            </div>
+
+              {/* <Link className="btn btn-info mx-2" to="/me">
+                {Auth.getProfile().data.username}
+              </Link> */}
+              {/* <button className="btn btn-light mx-2" onClick={logout}>
                 Logout
-              </button>
+              </button> */}
             </>
           ) : (
             <>
-              <Link className="btn btn-m btn-info m-2" to="/login">
+              <Link className="btn btn-info mx-2" to="/login">
                 Login
               </Link>
-              <Link className="btn btn-m btn-light m-2" to="/signup">
+              <Link className="btn btn-light mx-2" to="/signup">
                 Signup
               </Link>
             </>
