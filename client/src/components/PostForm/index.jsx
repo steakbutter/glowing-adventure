@@ -87,11 +87,10 @@ const PostForm = ({games}) => {
 
   return (
     <div>
-      <h3>What's on your geeky mind?</h3>
 
       {Auth.loggedIn() ? (
         <>
-          
+        <h3>What's on your geeky mind?</h3>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -99,7 +98,7 @@ const PostForm = ({games}) => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="title"
-                placeholder="Enter the title of your post..."
+                placeholder="Enter the title of your list..."
                 value={title}
                 className="form-input h-1"
                 style={{ lineHeight: '1', resize: 'vertical' }}
