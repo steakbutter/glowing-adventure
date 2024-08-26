@@ -8,7 +8,14 @@ const resolvers = {
       return User.find().populate('posts');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('posts');
+      return User.findOne({ username })
+      .populate({
+        path: 'posts', 
+        populate: {
+          path: 'games' 
+        }
+      }
+    );
     },
     posts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -54,12 +61,13 @@ const resolvers = {
 
       return { token, user };
     },
-    addPost: async (parent, { text }, context) => {
+    addPost: async (parent, { text, title, games }, context) => {
       if (context.user) {
         const post = await Post.create({
           title,
           text,
           author: context.user.username,
+          games,
         });
 
         await User.findOneAndUpdate(

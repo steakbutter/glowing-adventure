@@ -5,7 +5,9 @@ const PostList = ({
   title,
   showTitle = true,
   showUsername = true,
+  showGames = true,
 }) => {
+  
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
   }
@@ -41,6 +43,7 @@ const PostList = ({
         posts.map((post) => (
           <div key={post._id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
+              <p> {post.title}</p>
               {showUsername ? (
                 <Link
                   className="text-light"
@@ -61,6 +64,13 @@ const PostList = ({
             </h4>
             <div className="card-body bg-light p-2">
               <p>{post.text}</p>
+              <div >
+                {showGames && post.games.map((game) => (
+                  <div key = {game._id}> 
+                    <p>{game.title}</p>
+                  </div>
+                ))}
+              </div>
             </div>
             <Link
               className="btn btn-primary btn-block btn-squared"
