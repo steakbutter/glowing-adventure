@@ -12,6 +12,30 @@ const PostList = ({
 
   return (
     <div>
+      <div className='grid grid-cols-3 gap-4'>
+        <div className="card lg:card-side min-w-64 bg-base-100">
+          <div className='container flex flex-column m-2'>
+            <div className='gamedefault bg-info box-border p-4 m-1'>Game 1</div>
+            <div className='gamedefault bg-info box-border p-4 m-1'>Game 2</div>
+            <div className='gamedefault bg-info box-border p-4 m-1'>Game 3</div>
+          </div>
+          <div className="card-body">
+            <h2 className="card-title">Top 10 worst shooter games</h2>
+            <p>I hate these games</p>
+          </div>
+        </div>
+        <div className="card lg:card-side min-w-64 bg-base-100">
+          <div className='container flex flex-column m-2'>
+            <div className='gamedefault bg-info box-border p-4 m-1'>Game 1</div>
+            <div className='gamedefault bg-info box-border p-4 m-1'>Game 2</div>
+            <div className='gamedefault bg-info box-border p-4 m-1'>Game 3</div>
+          </div>
+          <div className="card-body">
+            <h2 className="card-title">Top 10 best shooter games</h2>
+            <p>I love these games</p>
+          </div>
+        </div>
+      </div>
       {showTitle && <h3>{title}</h3>}
       {posts &&
         posts.map((post) => (
@@ -24,13 +48,13 @@ const PostList = ({
                 >
                   {post.author} <br />
                   <span style={{ fontSize: '1rem' }}>
-                    had this post on {post.createdAt}
+                    {post.createdAt}
                   </span>
                 </Link>
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this post on {post.createdAt}
+                    {post.createdAt}
                   </span>
                 </>
               )}

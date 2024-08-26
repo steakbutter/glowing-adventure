@@ -436,6 +436,11 @@ a:hover {
   text-decoration: underline;
 }
 
+.gamedefault {
+  color: white;
+  font-size: 1.2rem;
+}
+
 /* HEIGHT / WIDTH UTILS */
 .w-100 {
   width: 100%;
