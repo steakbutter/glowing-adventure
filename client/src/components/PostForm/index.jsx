@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_POST } from '../../utils/mutations';
-import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
+import { QUERY_POSTS, QUERY_ME, QUERY_GAMES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -19,7 +19,9 @@ const PostForm = ({games}) => {
       QUERY_POSTS,
       'getPosts',
       QUERY_ME,
-      'me'
+      'me',
+      QUERY_GAMES,
+      'getGames'
     ]
   });
 

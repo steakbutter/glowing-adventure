@@ -9,11 +9,11 @@ export const QUERY_USER = gql`
       posts {
         _id
         title
+        text
         games{
         _id
         title
       }
-        text
         createdAt
       }
     }
@@ -80,6 +80,10 @@ export const QUERY_ME = gql`
           title
         }
         author
+        games{
+        _id
+        title
+      }
         createdAt
       }
     }
