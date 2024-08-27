@@ -433,7 +433,7 @@ a {
 
 a:hover {
   color: #065b83;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .gamedefault {
@@ -987,6 +987,10 @@ a:hover {
 
 .display-flex {
   display: flex !important;
+}
+
+.games-btn {
+  width: 200px;
 }
 
 .btn {

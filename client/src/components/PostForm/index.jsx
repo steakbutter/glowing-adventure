@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 
 import { ADD_POST } from '../../utils/mutations';
 import { QUERY_POSTS, QUERY_ME, QUERY_GAMES } from '../../utils/queries';
@@ -12,6 +12,9 @@ const PostForm = ({games}) => {
   const [title, setTitle] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
+
+  const { loading, data : gamesData} = useQuery(QUERY_GAMES);
+  const gamesArr = gamesData?.games || [];
 
   const [addPost, { error }] = useMutation
   (ADD_POST, {
@@ -127,14 +130,16 @@ const PostForm = ({games}) => {
             <div className="col-12 col-lg-9">
               <p>Choose your games:</p>
               
-              <div>
-              {games && games.map((game, index) => (
-                <div key={game._id+"_0"}>
-                  <input type="checkbox" id={game._id} name={"checkbox-" + index} key={game._id + "_" + index} value = {game._id} />
-                  <label key={game._id + "_label_2"}>{game.title}</label>
-                </div>
-              ))}
+              <div className='grid grid-cols-3 gap-4'>
+                {gamesArr && gamesArr.map((game, index) => (
+                  <div className='flex flex-row justify-between'>
+                    <div key={game._id + "_0"}>
+                      <input type="checkbox" className='btn games-btn btn-info' aria-label={game.title} id={game._id} name={"checkbox-" + index} key={game._id + "_" + index} value={game._id} />
+                    </div>
+                  </div>
+                ))}
               </div>
+
               
             </div>
               

@@ -817,11 +817,6 @@ html {
 }
 
 @media (hover:hover) {
-  .label a:hover {
-    --tw-text-opacity: 1;
-    color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
-  }
-
   .menu li > *:not(ul, .menu-title, details, .btn):active,
 .menu li > *:not(ul, .menu-title, details, .btn).active,
 .menu li > details > summary:active {
@@ -1177,19 +1172,6 @@ html {
   }
 }
 
-.label {
-  display: flex;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
 .input {
   flex-shrink: 1;
   -webkit-appearance: none;
@@ -1359,11 +1341,6 @@ html {
   border-width: 4px;
   --tw-border-opacity: 1;
   border-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-border-opacity)));
-}
-
-.btm-nav > * .label {
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -2137,12 +2114,12 @@ html {
   width: 6rem;
 }
 
-.min-w-64 {
-  min-width: 16rem;
+.w-80 {
+  width: 20rem;
 }
 
-.min-w-80 {
-  min-width: 20rem;
+.min-w-64 {
+  min-width: 16rem;
 }
 
 .resize {
@@ -2159,6 +2136,10 @@ html {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .gap-4 {
@@ -2724,7 +2705,7 @@ a {
 
 a:hover {
   color: #065b83;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .gamedefault {
@@ -3296,6 +3277,10 @@ a:hover {
 
 .display-flex {
   display: flex !important;
+}
+
+.games-btn {
+  width: 200px;
 }
 
 .btn {

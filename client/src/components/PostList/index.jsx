@@ -33,22 +33,19 @@ const PostList = ({
               <div className='flex flex-column m-2'>
                 {showGames && post.games.map((game) => (
                   <div key={game._id}>
-                    <p className='gamedefault bg-info box-border min-w-80 p-4 m-1'>{game.title}</p>
+                    <p className='gamedefault bg-info box-border w-80 p-4 m-1'>{game.title}</p>
                   </div>
                 ))}
               </div>
               <div className="card-body m-2">
+                <Link to={`/posts/${post._id}`}>
                 <div className="text-dark">
                   <h2>{post.title}</h2>
                   <h4><Link to={`/profiles/${post.author}`}>{post.author}</Link></h4>
                   <h5>{post.createdAt}</h5>
                 </div>
                 <p>{post.text}</p>
-                <Link
-                  className="btn btn-primary"
-                  to={`/posts/${post._id}`}
-                >
-                  Comments
+                  
                 </Link>
               </div>
             </div>
@@ -57,5 +54,6 @@ const PostList = ({
     </div>
   );
 };
+
 
 export default PostList;
