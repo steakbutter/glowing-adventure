@@ -14,8 +14,6 @@ const PostForm = () => {
   const [characterCount, setCharacterCount] = useState(0);
   const { loading, data : gamesData} = useQuery(QUERY_GAMES);
 
-  const { loading, data : gamesData} = useQuery(QUERY_GAMES);
-  const gamesArr = gamesData?.games || [];
 
   const [addPost, { error }] = useMutation
   (ADD_POST, {

@@ -10,6 +10,7 @@ module.exports = async (modelName, collectionName) => {
     if (modelExists.length) {
       await db.dropCollection(collectionName);
     }
+    await db.dropDatabase();
   } catch (err) {
     throw err;
   }
