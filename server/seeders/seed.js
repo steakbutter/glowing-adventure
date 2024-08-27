@@ -26,7 +26,7 @@ db.once('open', async () => {
       const postSeed = postSeeds[i];
 
       // Get a random number of games (between 1 and the total number of games)
-      const randomGames = getRandomGames(games, 2);
+      const randomGames = getRandomGames(games, Math.floor(Math.random() * 9) + 2);
 
       // Populate the gameList with the selected random games' ObjectId references
       postSeed.games = randomGames.map(game => game._id);
