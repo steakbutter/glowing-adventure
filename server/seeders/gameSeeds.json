@@ -15,5 +15,45 @@
         "title": "Horizon Zero Dawn",
         "company": "Guerrilla",
         "console": ["PS4", "PS5"]
-     }
+     },
+
+     {
+      "title": "Grand Theft Auto V",
+      "company": "Rockstar",
+      "console": ["PS5", "XBOX One", "PC"]
+   },
+
+   {
+      "title": "Splatoon 3",
+      "company": "Nintendo",
+      "console": ["Nintendo Switch"]
+   },
+
+   {
+      "title": "Earthbound",
+      "company": "Nintendo",
+      "console": ["Nintendo Switch"]
+   },
+
+   {
+      "title": "Monster Hunter World",
+      "company": "Capcom",
+      "console": ["PS4", "XBOX One", "PC"]
+   },
+
+   {
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "company": "Nintendo",
+      "console": ["Nintendo Switch"]
+   },
+   {
+      "title": "Hollow Knight",
+      "company": "Team Cherry",
+      "console": ["PS5", "XBOX One", "PC", "Nintendo Switch"]
+   },
+   {
+      "title": "Jusant",
+      "company": "Don't Nod",
+      "console": ["PC"]
+   }
 ]
