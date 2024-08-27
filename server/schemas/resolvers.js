@@ -12,7 +12,7 @@ const resolvers = {
       .populate({
         path: 'posts', 
         populate: {
-          path: 'games' 
+          path: 'games'
         }
       }
     );
@@ -32,7 +32,14 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('posts');
+        return User.findOne({ _id: context.user._id }).populate({
+          path: 'posts', 
+          populate: {
+            path: 'games',
+            model: 'Game'
+          }
+        }
+      );
       }
       throw AuthenticationError;
     },
