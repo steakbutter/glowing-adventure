@@ -14,6 +14,9 @@ const PostForm = () => {
   const [characterCount, setCharacterCount] = useState(0);
   const { loading, data : gamesData} = useQuery(QUERY_GAMES);
 
+  const { loading, data : gamesData} = useQuery(QUERY_GAMES);
+  const gamesArr = gamesData?.games || [];
+
   const [addPost, { error }] = useMutation
   (ADD_POST, {
     refetchQueries: [
@@ -133,14 +136,16 @@ const PostForm = () => {
             <div className="col-12 col-lg-9">
               <p>Choose your games:</p>
               
-              <div>
-              {gamesArr && gamesArr.map((game, index) => (
-                <div key={game._id+"_0"}>
-                  <input type="checkbox" id={game._id} name={"checkbox-" + index} key={game._id + "_" + index} value = {game._id} />
-                  <label key={game._id + "_label_2"}>{game.title}</label>
-                </div>
-              ))}
+              <div className='grid grid-cols-3 gap-4'>
+                {gamesArr && gamesArr.map((game, index) => (
+                  <div className='flex flex-row justify-between'>
+                    <div key={game._id + "_0"}>
+                      <input type="checkbox" className='btn games-btn btn-info' aria-label={game.title} id={game._id} name={"checkbox-" + index} key={game._id + "_" + index} value={game._id} />
+                    </div>
+                  </div>
+                ))}
               </div>
+
               
             </div>
               
