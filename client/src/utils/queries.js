@@ -55,6 +55,10 @@ export const QUERY_SINGLE_POST = gql`
       text
       author
       createdAt
+      games{
+        _id
+        title
+      }
       comments {
         _id
         commentText
@@ -75,6 +79,10 @@ export const QUERY_ME = gql`
         _id
         title
         text
+        games{
+          _id
+          title
+        }
         author
         games{
         _id

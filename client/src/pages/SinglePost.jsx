@@ -18,6 +18,8 @@ const SinglePost = () => {
 
   const post = data?.post || {};
 
+  console.log(post);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -43,6 +45,14 @@ const SinglePost = () => {
         >
           {post.text}
         </blockquote>
+
+        {post && post.games.map((game) => (
+              <div key={game._id}>
+                <p className='gamedefault bg-info box-border p-4 m-1'>{game.title}</p>
+              </div>
+            ))}
+
+
       </div>
 
       <div className="my-5">

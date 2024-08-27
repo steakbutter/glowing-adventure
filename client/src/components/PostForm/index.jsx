@@ -7,11 +7,12 @@ import { QUERY_POSTS, QUERY_ME, QUERY_GAMES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const PostForm = ({games}) => {
+const PostForm = () => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
+  const { loading, data : gamesData} = useQuery(QUERY_GAMES);
 
   const { loading, data : gamesData} = useQuery(QUERY_GAMES);
   const gamesArr = gamesData?.games || [];
@@ -28,9 +29,14 @@ const PostForm = ({games}) => {
     ]
   });
 
+  
+
+  const gamesArr = gamesData?.games || [];
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    
     const gamesArray = [];
     const formData = new FormData(event.target);
     const formEntries = formData.entries();
