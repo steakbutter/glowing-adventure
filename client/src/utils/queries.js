@@ -8,6 +8,11 @@ export const QUERY_USER = gql`
       email
       posts {
         _id
+        title
+        games{
+        _id
+        title
+      }
         text
         createdAt
       }
@@ -68,7 +73,12 @@ export const QUERY_ME = gql`
       email
       posts {
         _id
+        title
         text
+        games{
+          _id
+          title
+        }
         author
         createdAt
       }
