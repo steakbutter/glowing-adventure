@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 
 import { ADD_POST } from '../../utils/mutations';
 import { QUERY_POSTS, QUERY_ME, QUERY_GAMES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const PostForm = ({games}) => {
+const PostForm = () => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
+  const { loading, data : gamesData} = useQuery(QUERY_GAMES);
 
   const [addPost, { error }] = useMutation
   (ADD_POST, {
@@ -25,9 +26,14 @@ const PostForm = ({games}) => {
     ]
   });
 
+  
+
+  const gamesArr = gamesData?.games || [];
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    
     const gamesArray = [];
     const formData = new FormData(event.target);
     const formEntries = formData.entries();
@@ -128,7 +134,7 @@ const PostForm = ({games}) => {
               <p>Choose your games:</p>
               
               <div>
-              {games && games.map((game, index) => (
+              {gamesArr && gamesArr.map((game, index) => (
                 <div key={game._id+"_0"}>
                   <input type="checkbox" id={game._id} name={"checkbox-" + index} key={game._id + "_" + index} value = {game._id} />
                   <label key={game._id + "_label_2"}>{game.title}</label>

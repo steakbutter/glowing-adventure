@@ -75,6 +75,10 @@ export const QUERY_ME = gql`
         _id
         title
         text
+        games{
+          _id
+          title
+        }
         author
         games{
         _id

@@ -43,6 +43,14 @@ const SinglePost = () => {
         >
           {post.text}
         </blockquote>
+
+        {post.games.map((game) => (
+              <div key={game._id}>
+                <p className='gamedefault bg-info box-border p-4 m-1'>{game.title}</p>
+              </div>
+            ))}
+
+
       </div>
 
       <div className="my-5">
