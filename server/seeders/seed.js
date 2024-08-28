@@ -11,6 +11,8 @@ db.once('open', async () => {
 
     await cleanDB('User', 'users');
 
+    await cleanDB('Game', 'games');
+
     await User.create(userSeeds);
 
     const games = await Game.create(gameSeeds);
