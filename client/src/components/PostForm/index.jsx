@@ -56,10 +56,6 @@ const PostForm = () => {
         },
       });
 
-
-     
-
-
       setText('');
       setTitle('');
     } catch (err) {
