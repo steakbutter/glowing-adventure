@@ -13,7 +13,7 @@ const Profile = () => {
 
 
 
-  const { loading : userLoading, data : userData } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  const { loading: userLoading, data: userData } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
 
@@ -44,10 +44,12 @@ const Profile = () => {
 
 
   return (
+
     <div className="flex-row justify-center mb-3">
       
         {userParam ? (
         <div>
+
           <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
             Viewing  {user.username}'s  posts.
           </h2>
@@ -59,6 +61,7 @@ const Profile = () => {
               showUsername={false}
               myPost = {false}
             />
+
           </div>
         </div>
           )
@@ -78,6 +81,7 @@ const Profile = () => {
         </div>
       </div>)
         }
+
     </div>
   );
 };

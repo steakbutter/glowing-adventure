@@ -65,12 +65,12 @@ const PostList =  ({
               </div>
               <div className="card-body m-2">
                 <Link to={`/posts/${post._id}`}>
-                <div className="text-dark">
+                <div className="text-black">
                   <h2>{post.title}</h2>
-                  <h4><Link to={`/profiles/${post.author}`}>{post.author}</Link></h4>
+                  <h4><Link className="text-black" to={`/profiles/${post.author}`}>{post.author}</Link></h4>
                   <h5>{post.createdAt}</h5>
                 </div>
-                <p>{post.text}</p>
+                <p className="text-black">{post.text}</p>
                   
                 </Link>
               </div>
