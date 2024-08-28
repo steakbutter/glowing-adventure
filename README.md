@@ -5,12 +5,10 @@
 "Gamer Lists" https://glowing-adventure.onrender.com is a social media website, where gamers can post their lists of games. <br>
 All posts can also be commented by other users to start a discussion about videogames. <br>
 All three members of our team love playing videogames, so we decided to create this gamer space, <br>
-where we are free to share our thoughts on any videogames we have played or haven't played. <br>
+where we are free to share our thoughts on any videogames we have or haven't played. <br>
 We learned that by using a MERN tech stack, we are equipped with the skills to create apps <br>
 with an architecture capable of upscaling and downscaling without compromising code integrity.
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
