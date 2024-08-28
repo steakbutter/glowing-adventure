@@ -11,37 +11,39 @@ db.once('open', async () => {
 
     await cleanDB('User', 'users');
 
-    await User.create(userSeeds);
+    await cleanDB('Game', 'games');
+
+    // await User.create(userSeeds);
 
     const games = await Game.create(gameSeeds);
 
 
-    function getRandomGames(gameArray, numGames) {
-      const shuffled = gameArray.sort(() => Math.random() -0.5 );
-      return shuffled.slice(0, numGames);
-    }
+    // function getRandomGames(gameArray, numGames) {
+    //   const shuffled = gameArray.sort(() => Math.random() -0.5 );
+    //   return shuffled.slice(0, numGames);
+    // }
     
-    for (let i = 0; i < postSeeds.length; i++) {
+    // for (let i = 0; i < postSeeds.length; i++) {
 
-      const postSeed = postSeeds[i];
+    //   const postSeed = postSeeds[i];
 
-      // Get a random number of games (between 1 and the total number of games)
-      const randomGames = getRandomGames(games, Math.floor(Math.random() * 9) + 2);
+    //   // Get a random number of games (between 1 and the total number of games)
+    //   const randomGames = getRandomGames(games, Math.floor(Math.random() * 9) + 2);
 
-      // Populate the gameList with the selected random games' ObjectId references
-      postSeed.games = randomGames.map(game => game._id);
+    //   // Populate the gameList with the selected random games' ObjectId references
+    //   postSeed.games = randomGames.map(game => game._id);
 
 
-      const { _id, author } = await Post.create(postSeed);
-      const user = await User.findOneAndUpdate(
-        { username: author },
-        {
-          $addToSet: {
-            posts: _id,
-          },
-        }
-      );
-    }
+    //   const { _id, author } = await Post.create(postSeed);
+    //   const user = await User.findOneAndUpdate(
+    //     { username: author },
+    //     {
+    //       $addToSet: {
+    //         posts: _id,
+    //       },
+    //     }
+    //   );
+    // }
   } catch (err) {
     console.error(err);
     process.exit(1);
