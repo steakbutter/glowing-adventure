@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_POST } from '../../utils/mutations';
 
+import { QUERY_POSTS, QUERY_ME, QUERY_GAMES } from '../../utils/queries';
+
 const PostList =  ({
   posts,
   title,
