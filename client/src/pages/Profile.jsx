@@ -22,8 +22,11 @@ const Profile = () => {
 
   // navigate to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+
     return <Navigate to="/me" />;
   }
+
+
 
   if (userLoading) {
     return <div>Loading...</div>;
@@ -41,15 +44,14 @@ const Profile = () => {
 
 
   return (
-    <div>
-      <div className="flex-row justify-center mb-3">
-        {/* <div className="flex avatar placeholder">
-          <div className="bg-neutral text-neutral-content w-24 h-24 m-3 rounded-full">
-            <span className="text-3xl">O</span>
-          </div>
-        </div> */}
+
+    <div className="flex-row justify-center mb-3">
+      
+        {userParam ? (
+        <div>
+
           <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-            Viewing {userParam ? `${user.username}'s` : 'your'} posts.
+            Viewing  {user.username}'s  posts.
           </h2>
           <div className="col-12 col-md-10 mb-5">
             <PostList
@@ -57,9 +59,29 @@ const Profile = () => {
               title={`${user.username}'s posts...`}
               showTitle={false}
               showUsername={false}
+              myPost = {false}
             />
+
+          </div>
         </div>
-      </div>
+          )
+      :( 
+        <div>
+        <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+          Viewing your posts.
+        </h2>
+        <div className="col-12 col-md-10 mb-5">
+          <PostList
+            posts={user.posts}
+            title={`${user.username}'s posts...`}
+            showTitle={false}
+            showUsername={false}
+            myPost = {true}
+          />
+        </div>
+      </div>)
+        }
+
     </div>
   );
 };

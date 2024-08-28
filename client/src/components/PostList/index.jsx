@@ -1,30 +1,56 @@
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 
-const PostList = ({
+
+import { ADD_POST } from '../../utils/mutations';
+
+const PostList =  ({
   posts,
   title,
   showTitle = true,
   showUsername = true,
   showGames = true,
+  myPost = false,
 }) => {
+
+  const [addPost, { error }] = useMutation
+  (ADD_POST, {
+    refetchQueries: [
+      QUERY_POSTS,
+      'getPosts',
+      QUERY_ME,
+      'me',
+      QUERY_GAMES,
+      'getGames'
+    ]
+  });
 
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
   }
 
+  const handleClick = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await removePost({
+        variables: {
+          text,
+          title,
+          author: Auth.getProfile().data.username,
+          games: gamesArray,
+        },
+      });
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
   return (
     <div>
-      {/* <div className='grid grid-cols-3 gap-4'>
-        <div className="card lg:card-side min-w-64 bg-base-100">
-          <div className='container flex flex-column m-2'>
-            <div className='gamedefault bg-info box-border p-4 m-1'>Game 1</div>
-          </div>
-          <div className="card-body">
-            <h2 className="card-title">Top 10 worst shooter games</h2>
-            <p>I hate these games</p>
-          </div>
-        </div>
-      </div> */}
       {showTitle && <h3>{title}</h3>}
       {posts &&
         posts.map((post) => (
@@ -48,6 +74,12 @@ const PostList = ({
                   
                 </Link>
               </div>
+              
+              {myPost && 
+              <button className='btn btn-error m-4' type='button' onClick={handleClick}>
+                Delete Post
+              </button>
+              }
             </div>
           </div>
         ))}
