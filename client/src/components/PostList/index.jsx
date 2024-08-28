@@ -6,7 +6,10 @@ const PostList = ({
   showTitle = true,
   showUsername = true,
   showGames = true,
+  myPost = false,
 }) => {
+
+  console.log(myPost);
 
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
@@ -14,17 +17,6 @@ const PostList = ({
 
   return (
     <div>
-      {/* <div className='grid grid-cols-3 gap-4'>
-        <div className="card lg:card-side min-w-64 bg-base-100">
-          <div className='container flex flex-column m-2'>
-            <div className='gamedefault bg-info box-border p-4 m-1'>Game 1</div>
-          </div>
-          <div className="card-body">
-            <h2 className="card-title">Top 10 worst shooter games</h2>
-            <p>I hate these games</p>
-          </div>
-        </div>
-      </div> */}
       {showTitle && <h3>{title}</h3>}
       {posts &&
         posts.map((post) => (
@@ -48,6 +40,12 @@ const PostList = ({
                   
                 </Link>
               </div>
+              
+              {myPost && 
+              <button className='btn btn-error m-4'>
+                Delete Post
+              </button>
+              }
             </div>
           </div>
         ))}
