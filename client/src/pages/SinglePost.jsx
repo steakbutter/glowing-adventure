@@ -1,4 +1,5 @@
 // Import the `useParams()` hook
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
@@ -28,7 +29,7 @@ const SinglePost = () => {
       
       <h3 className="card-header bg-dark text-light p-2 m-0">
       <p>{post.title}</p> 
-        {post.author} <br />
+      <h4><Link to={`/profiles/${post.author}`}>{post.author}</Link></h4>
         <span style={{ fontSize: '1rem' }}>
           had this post on {post.createdAt}
         </span>
