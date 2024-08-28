@@ -13,7 +13,7 @@ const Profile = () => {
 
 
 
-  const { loading : userLoading, data : userData } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  const { loading: userLoading, data: userData } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
 
@@ -44,8 +44,8 @@ const Profile = () => {
     <div>
       <div className="flex-row justify-center mb-3">
         {/* <div className="flex avatar placeholder">
-          <div className="bg-neutral text-neutral-content w-24 rounded-full">
-            <span className="text-3xl">D</span>
+          <div className="bg-neutral text-neutral-content w-24 h-24 m-3 rounded-full">
+            <span className="text-3xl">O</span>
           </div>
         </div> */}
           <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
@@ -58,7 +58,7 @@ const Profile = () => {
               showTitle={false}
               showUsername={false}
             />
-          </div>
+        </div>
       </div>
     </div>
   );
