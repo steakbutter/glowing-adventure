@@ -132,8 +132,8 @@ const PostForm = () => {
               
               <div className='grid grid-cols-3 gap-4'>
                 {gamesArr && gamesArr.map((game, index) => (
-                  <div className='flex flex-row justify-between'>
-                    <div key={game._id + "_0"}>
+                  <div className='flex flex-row justify-between' key={game._id + "_0"}>
+                    <div key={game._id + "_1"}>
                       <input type="checkbox" className='btn games-btn btn-info' aria-label={game.title} id={game._id} name={"checkbox-" + index} key={game._id + "_" + index} value={game._id} />
                     </div>
                   </div>

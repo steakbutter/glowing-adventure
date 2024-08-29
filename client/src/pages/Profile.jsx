@@ -73,6 +73,7 @@ const Profile = () => {
         <div className="col-12 col-md-10 mb-5">
           <PostList
             posts={user.posts}
+            user={user._id}
             title={`${user.username}'s posts...`}
             showTitle={false}
             showUsername={false}
