@@ -8,9 +8,9 @@ const Footer = () => {
       <div className="container text-center text-light mb-5">
         <h2>The team in charge of this project!</h2>
         <ul>
-          <h4><a className='text-light' href='https://github.com/yordanop'>Yordano Perez</a></h4>
-          <h4><a className='text-light' href='https://github.com/steakbutter'>Carlos Gonzales</a></h4>
-          <h4><a className='text-light' href='https://github.com/Kahlium'>Karen Gutierrez</a></h4>
+          <li><h4><a className='text-light' href='https://github.com/yordanop'>Yordano Perez</a></h4></li>
+          <li><h4><a className='text-light' href='https://github.com/steakbutter'>Carlos Gonzales</a></h4></li>
+          <li><h4><a className='text-light' href='https://github.com/Kahlium'>Karen Gutierrez</a></h4></li>
         </ul>
       </div>
     </footer>
