@@ -95,7 +95,7 @@ const PostForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-        <h3>What's on your geeky mind?</h3>
+        <h3>Share a list of games!</h3>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
